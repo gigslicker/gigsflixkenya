@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GIGSFLIX - Free Movies Kenya</title>
+<style>
+body{background:#000;color:#fff;font-family:Arial;margin:0;padding-bottom:70px}
+header{background:#e50914;padding:15px;text-align:center;font-size:26px;font-weight:bold}
+.search{padding:15px;text-align:center}
+.search input{padding:12px;width:85%;border-radius:10px;border:0;font-size:16px}
+h2{padding:0 15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:15px;padding:15px}
+.card{background:#111;border-radius:12px;overflow:hidden}
+.card iframe{width:100%;height:180px;border:0}
+.card div{padding:12px}
+.btn{background:#e50914;color:#fff;border:0;padding:12px;border-radius:8px;width:100%;font-size:16px}
+select{padding:12px;border-radius:8px;background:#222;color:#fff;border:0;font-size:16px}
+footer{text-align:center;padding:20px;color:#888}
+/* WhatsApp Floating Button */
+.whatsapp-float{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;text-decoration:none;z-index:999;box-shadow:0 4px 15px rgba(0,0,0,0.5)}
+.whatsapp-float span{position:absolute;top:-8px;right:-5px;background:red;color:#fff;font-size:11px;padding:2px 6px;border-radius:10px}
+</style>
+</head>
+<body>
+
+<header>🎬 GIGSFLIX</header>
+<p style="text-align:center;color:#ccc;">Free Movies & Series - No Sign Up - Watch Now</p>
+
+<div class="search">
+<input id="search" placeholder="🔍 Search movie / series..." onkeyup="searchMovie()">
+</div>
+
+<!-- ========== MOVIES ========== -->
+<h2>🔥 Trending Movies</h2>
+<div class="grid" id="movies">
+  <div class="card">
+    <iframe src="https://archive.org/embed/big_buck_bunny_1080p" allowfullscreen></iframe>
+    <div><h3>Big Buck Bunny</h3><p>Animation | HD | Free</p><button class="btn">▶ Watch Now</button></div>
+  </div>
+  <div class="card">
+    <iframe src="https://archive.org/embed/Sintel" allowfullscreen></iframe>
+    <div><h3>Sintel</h3><p>Action | HD | Free</p><button class="btn">▶ Watch Now</button></div>
+  </div>
+</div>
+
+<!-- ========== SERIES ========== -->
+<h2>📺 TV Series - Season & Episode</h2>
+<div style="padding:15px;">
+<div style="background:#111;border-radius:12px;overflow:hidden;padding:15px;">
+  <h3>Money Heist</h3>
+  <iframe id="seriesPlayer" src="https://archive.org/embed/big_buck_bunny_1080p" width="100%" height="220" frameborder="0" allowfullscreen style="border-radius:10px;"></iframe>
+  <div style="display:flex;gap:10px;margin-top:12px;">
+    <select id="seasonSelect" onchange="changeEpisode()" style="flex:1;">
+      <option value="1">Season 1</option>
+      <option value="2">Season 2</option>
+      <option value="3">Season 3</option>
+    </select>
+    <select id="episodeSelect" onchange="changeEpisode()" style="flex:1;">
+      <option value="1">Episode 1</option>
+      <option value="2">Episode 2</option>
+      <option value="3">Episode 3</option>
+      <option value="4">Episode 4</option>
+      <option value="5">Episode 5</option>
+    </select>
+  </div>
+  <p id="nowPlaying" style="color:#ccc;margin-top:10px;">Now Playing: Season 1 - Episode 1</p>
+  <button onclick="prevEp()" style="background:#333;color:#fff;border:0;padding:10px 15px;border-radius:8px;">⬅ Prev</button>
+  <button onclick="nextEp()" style="background:#e50914;color:#fff;border:0;padding:10px 15px;border-radius:8px;">Next ➡</button>
+</div>
+</div>
+
+<!-- ========== REQUEST MOVIE ========== -->
+<h2>💬 Request A Movie</h2>
+<div style="padding:15px;text-align:center;">
+<a href="https://wa.me/254700000000?text=Hi GigsFlix, please add this movie:" style="background:#25D366;color:#fff;padding:14px 20px;border-radius:10px;text-decoration:none;font-weight:bold;">Request on WhatsApp</a>
+</div>
+
+<!-- ========== WHATSAPP CUSTOMER SERVICE ========== -->
+<h2>🛎️ Customer Service</h2>
+<div style="padding:15px;">
+<div style="background:#111;border-radius:12px;padding:18px;text-align:center;">
+  <div style="font-size:40px;">💬</div>
+  <h3>Need Help? Talk To Us On WhatsApp</h3>
+  <p style="color:#ccc;">Movie not playing? Want a movie added? Problem with site?<br>We reply fast - 8AM to 10PM Daily</p>
+  <a href="https://wa.me/254700000000?text=Hi GigsFlix Customer Service, I need help" style="background:#25D366;color:#fff;padding:14px 25px;border-radius:10px;text-decoration:none;font-weight:bold;display:inline-block;margin-top:10px;">💬 Chat With Support</a>
+  <p style="color:#888;font-size:13px;margin-top:12px;">Or call: +254 700 000 000</p>
+  <div style="display:flex;gap:10px;margin-top:10px;">
+    <a href="https://wa.me/254700000000?text=Hi, movie is not playing" style="flex:1;background:#222;color:#fff;padding:10px;border-radius:8px;text-decoration:none;">🎬 Movie Not Playing?</a>
+    <a href="https://wa.me/254700000000?text=Hi, I want to request a movie" style="flex:1;background:#222;color:#fff;padding:10px;border-radius:8px;text-decoration:none;">🎞️ Request Movie</a>
+  </div>
+</div>
+</div>
+
+<footer>GigsFlix © 2026 - Made in Kenya</footer>
+
+<!-- FLOATING WHATSAPP BUTTON - ALWAYS VISIBLE -->
+<a class="whatsapp-float" href="https://wa.me/254700000000?text=Hi GigsFlix, I need help">💬<span>1</span></a>
+
+<script>
+function searchMovie(){
+  let q=document.getElementById('search').value.toLowerCase();
+  document.querySelectorAll('.card').forEach(c=>{
+    c.style.display=c.innerText.toLowerCase().includes(q)?'block':'none';
+  });
+}
+const episodes = {
+  "1-1": "https://archive.org/embed/big_buck_bunny_1080p",
+  "1-2": "https://archive.org/embed/Sintel",
+  "1-3": "https://archive.org/embed/big_buck_bunny_1080p",
+  "1-4": "https://archive.org/embed/Sintel",
+  "1-5": "https://archive.org/embed/big_buck_bunny_1080p",
+  "2-1": "https://archive.org/embed/Sintel",
+  "2-2": "https://archive.org/embed/big_buck_bunny_1080p",
+  "2-3": "https://archive.org/embed/Sintel",
+  "2-4": "https://archive.org/embed/big_buck_bunny_1080p",
+  "2-5": "https://archive.org/embed/Sintel",
+  "3-1": "https://archive.org/embed/big_buck_bunny_1080p",
+  "3-2": "https://archive.org/embed/Sintel",
+  "3-3": "https://archive.org/embed/big_buck_bunny_1080p",
+  "3-4": "https://archive.org/embed/Sintel",
+  "3-5": "https://archive.org/embed/big_buck_bunny_1080p",
+};
+function changeEpisode(){
+  let s = document.getElementById('seasonSelect').value;
+  let e = document.getElementById('episodeSelect').value;
+  let key = s + "-" + e;
+  if(episodes[key]){
+    document.getElementById('seriesPlayer').src = episodes[key];
+    document.getElementById('nowPlaying').innerText = "Now Playing: Season " + s + " - Episode " + e;
+  }
+}
+function nextEp(){
+  let ep = document.getElementById('episodeSelect');
+  if(ep.value < 5){ ep.value = parseInt(ep.value)+1; changeEpisode(); }
+}
+function prevEp(){
+  let ep = document.getElementById('episodeSelect');
+  if(ep.value > 1){ ep.value = parseInt(ep.value)-1; changeEpisode(); }
+}
+</script>
+
+</body>
+      </html>
